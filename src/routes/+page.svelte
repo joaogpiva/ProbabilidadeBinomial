@@ -70,19 +70,10 @@
     </div>
 
     <div class="p-3 d-flex flex-column align-items-center justify-content-center">
-        <h2>Resultado da probabilidade individual ({@html exprProbabilidadeIndividual}): { resultIndividual }</h2>
-        <h2>Resultado da probabilidade acumulada ({@html exprProbabilidadeAcumulada}): { resultAcumulado }</h2>
+        <h2>Resultado da probabilidade individual ({@html exprProbabilidadeIndividual}): { resultIndividual.toFixed(4) }</h2>
+        <h2>Resultado da probabilidade acumulada ({@html exprProbabilidadeAcumulada}): { resultAcumulado.toFixed(4) }</h2>
     </div>
 </div>
-
-<input bind:value={p} type="number" placeholder="Digite o valor de p" />
-<input bind:value={n} type="number" placeholder="Digite o valor de n" />
-<input bind:value={x} type="number" placeholder="Digite o valor de x" />
-
-<button on:click={handleClick}>Calcular</button>
-
-<h3>Resultado individual: {resultIndividual}</h3>
-<h3>Resultado acumulado: {resultAcumulado}</h3>
 
 <style>
 .container-geral{
