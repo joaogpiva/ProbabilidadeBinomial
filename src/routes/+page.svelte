@@ -1,7 +1,7 @@
 <script lang="ts">
     import { math, display } from 'mathlifier';
 
-    let p: number, n: number, x: number, resultIndividual: number = 0, resultAcumulado: number = 0;
+    let p: number, n: number, x: number, resultIndividual = 0, resultAcumulado = 0;
     $: eq = display("P(x) = {" + (n ? n : 0) +  "\\choose " + (x ? x : 0) + "} \\cdot " 
                     + (p ? p : 0) + "^{" + (x ? x : 0) + "} \\cdot " 
                     + (p && p != 0 ? (1-p).toFixed(p.toString().split(".")[1].length) : 1) + "^{" + (x && n ? (n - x) : 0) + "}");
@@ -44,7 +44,7 @@
         if (numero < 0)
             return 1;
         return numero === 0 ? 1 : numero * fatorial(numero - 1);
-    };
+    }
 </script>
 
 <div class="d-flex flex-column align-items-center justify-content-center min-vh-100 container-geral" >
