@@ -1,7 +1,7 @@
 <script lang="ts">
     import { math, display } from 'mathlifier';
 
-    let p: number, n: number, x: number, resultIndividual: number = 0, resultAcumulada: number = 0;
+    let p: number, n: number, x: number, resultIndividual: number = 0, resultAcumulado: number = 0;
     $: eq = display("P(x) = {" + (n ? n : 0) +  "\\choose " + (x ? x : 0) + "} \\cdot " 
                     + (p ? p : 0) + "^{" + (x ? x : 0) + "} \\cdot " 
                     + (p && p != 0 ? (1-p).toFixed(p.toString().split(".")[1].length) : 1) + "^{" + (x && n ? (n - x) : 0) + "}");
@@ -71,7 +71,7 @@
 
     <div class="p-3 d-flex flex-column align-items-center justify-content-center">
         <h2>Resultado da probabilidade individual ({@html exprProbabilidadeIndividual}): { resultIndividual }</h2>
-        <h2>Resultado da probabilidade acumulada ({@html exprProbabilidadeAcumulada}): { resultAcumulada }</h2>
+        <h2>Resultado da probabilidade acumulada ({@html exprProbabilidadeAcumulada}): { resultAcumulado }</h2>
     </div>
 </div>
 
