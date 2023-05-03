@@ -12,7 +12,23 @@
 
     function handleClick() {
         if (!validateInputs(p, n, x)){
-            //TODO
+            let resString = "";
+
+            if(p > 1 || p < 0)
+                resString += "O valor de p deve ser entre 0 e 1, separando as casas decimais com ponto (por exemplo, 0.45)\n"
+
+            if(x > n)
+                resString += "O valor de x não pode ser maior que o valor de n\n";
+
+            let invalidInputs : string[] = [];
+            if (!p || p < 0) invalidInputs.push("p");
+            if (!n || n < 0) invalidInputs.push("n");
+            if (!x || x < 0) invalidInputs.push("x");
+            if(invalidInputs.length != 0)
+                resString += "Entradas inválidas: " + invalidInputs.join(", ");
+            
+            alert(resString);
+
             return;
         }        
 
@@ -31,12 +47,14 @@
 	}
 
     function validateInputs(p: number, n: number, x: number): boolean {
-        if (!n || !x || !p) {
+        if (p > 1 || p < 0)
+            return false
+        if (!n || !x || !p) 
             return false;
-        }
-        if (x > n) {
+        if (n < 0 || x < 0 || p < 0)
             return false;
-        }
+        if (x > n) 
+            return false;
         return true;
     }
 
@@ -55,13 +73,13 @@
     <div class="d-flex flex-column align-items-center justify-content-center p-3">
         <form>
             <div class="mb-2">
-                <input class="form-control" bind:value={p} placeholder="Digite o valor de p" />
+                <input class="form-control" type="number" bind:value={p} placeholder="Digite o valor de p" />
             </div>
             <div class="mb-2">
-                <input class="form-control" bind:value={n} placeholder="Digite o valor de n" />
+                <input class="form-control" type="number" bind:value={n} placeholder="Digite o valor de n" />
             </div>
             <div class="mb-2">
-                <input class="form-control" bind:value={x} placeholder="Digite o valor de x" />
+                <input class="form-control" type="number" bind:value={x} placeholder="Digite o valor de x" />
             </div>
         </form> 
 
@@ -70,8 +88,12 @@
     </div>
 
     <div class="p-3 d-flex flex-column align-items-center justify-content-center">
-        <h2>Resultado da probabilidade individual ({@html exprProbabilidadeIndividual}): { resultIndividual.toFixed(4) }</h2>
-        <h2>Resultado da probabilidade acumulada ({@html exprProbabilidadeAcumulada}): { resultAcumulado.toFixed(4) }</h2>
+        <div class="resultado">
+            <h2>Resultado da probabilidade individual ({@html exprProbabilidadeIndividual}): { resultIndividual.toFixed(4) }</h2>
+        </div>
+        <div class="resultado">
+            <h2>Resultado da probabilidade acumulada ({@html exprProbabilidadeAcumulada}): { resultAcumulado.toFixed(4) }</h2>
+        </div>
     </div>
 </div>
 
@@ -81,7 +103,21 @@
 }
 
 .btn-calcular{
+    color: rgb(162, 255, 162);
     background-color: rgb(0,111,60);
     border-color: #005930;
+}
+
+.resultado{
+    display: flex;
+    background-color: rgb(0,111,60);
+    border: 3px;
+    border-color: #005930;
+    color: rgb(162, 255, 162);
+    border-radius: 5px;
+    padding: 0.7rem;
+    margin: 0.3rem;
+    width: 100%;
+    justify-content: center;
 }
 </style>
